@@ -43,7 +43,7 @@ passport.use(new LocalStrategy({
     usernameField: 'email'
 },
 function(email, password, done) {
-    console.log(email, password)
+    console.log(email)
     users.findAll( {raw: true, where: { email_address: email }})
         .then(function(user){
         console.log(user[0]);
@@ -138,13 +138,6 @@ app.post("/users/register", async function(req, res) {
   
     let errors = [];
   
-    console.log({
-      name,
-      email,
-      password,
-      password2
-    });
-  
     if (!name || !email || !password || !password2) {
       errors.push({ message: "Please enter all fields" });
     }
@@ -172,7 +165,8 @@ app.post("/users/register", async function(req, res) {
         console.log(results);
         console.log(typeof results)
         if (results[0]) {
-        return res.render("register", { message: "Email already registered"});
+            console.log("Email already exists")
+            return res.render("register", { message: "Email already registered"});
         } else {
             const user = await users.create({name:name, email_address: email, password:hashedPassword});
             console.log(user.id)

@@ -17,9 +17,10 @@
     </ul>
     <ul>
       <% if(typeof message != "undefined") { %>
-        <li><%= message.success_msg %></li>
+        <li><%= message %></li>
         <% } %>
     </ul>
+
 
     <form action="/users/register" method="POST">
         <div>
