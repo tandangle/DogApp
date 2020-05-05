@@ -1,3 +1,7 @@
+html, head, body {
+    font-family: 'Roboto', sans-serif;
+  }
+
 #events {
     margin: 50px 0 0 0;
     display: flex;

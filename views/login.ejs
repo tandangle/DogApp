@@ -5,32 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <base href="/">
-    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"/>
+    <link rel="stylesheet" href="login.css">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Login</h1>
+<div id="header">
+</div>
+  <div id="login_form">
 
-    <ul>
-        <% if (typeof errors != 'undefined') { %> <% errors.forEach(error => { %>
-        <li><%= error.message %></li>
-        <% }) %> <% } %>
-      </ul>
-  
-      <ul>
-        <% if(messages.success_msg) { %>
-        <li><%= messages.success_msg %></li>
-        <% } %>
-      </ul>
-  
-      <ul>
-        <% if (messages.error) { %>
-        <li><%= messages.error %></li>
-        <% } %>
-      </ul>
   
       <form action="/users/login" method="POST">
+        <div id="errormsg">
+        <% if (typeof errors != 'undefined') { %> <% errors.forEach(error => { %>
+          <p><%= error.message %></p>
+          <% }) %> <% } %>
+    
+          <% if(messages.success_msg) { %>
+          <p><%= messages.success_msg %></p>
+          <% } %>
+    
+          <% if (messages.error) { %>
+          <p><%= messages.error %></p>
+          <% } %>
+        </div>
         <div>
+        <h1>Login</h1>
           <input
             type="email"
             id="email"
@@ -54,7 +55,7 @@
   
         <a href="/users/register">Register</a>
       </form>
-
+  </div>
 
 </body>
 </html>

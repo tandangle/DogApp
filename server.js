@@ -69,16 +69,15 @@ function(email, password, done) {
           return done(null, false, { message: 'Incorrect username.' });
         }
 
-        console.log("Made it to line 54");
-
         bcrypt.compare(password, user[0].password, function(err, result) {
             if(err) {
                 console.log(err);
-                return done(null, false, { message: 'Incorrect password.' });
-            } else if (result) {
+                return done(null, false, { message: 'Error authenticating login' });
+            } else if (result == true) {
                 return done(null, user);
             } else {
-                return done(null, false, { message: "Error authenticating login"})
+              console.log(result == false);
+                return done(null, false, { message: "Incorrect password"})
             }
         });
       })

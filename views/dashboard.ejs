@@ -7,15 +7,18 @@
     <base href="/">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet">
 </head>
 <body>
 <div id="header">
-    <div>
+</div>
+<div id="header_text">
+  <div>
     <h1>Welcome <%= user %> </h1>
 
     <a href="/users/create_dog"  class="btn btn-lg btn-secondary">Add a dog!</a>
     
-    <% if (typeof dogs != 'undefined') { %> 
+    <% if (!dogs) { %> 
     <div id="title">
         <h2>
             Click on a dog to do something!
@@ -46,7 +49,7 @@
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delet this dog?</h5>
+                      <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this dog?</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -68,7 +71,7 @@
             <% }) %> <% } %>
     </div>
 
-    <div id="logout"><a href="/users/logout">Logout</a></div>
+    <div id="logout"><a href="/users/logout" id="logout_link">Logout</a></div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
