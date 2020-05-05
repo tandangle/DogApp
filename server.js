@@ -221,6 +221,21 @@ app.get("/users/create_dog", checkNotAuthenticated, function(req, res){
   res.render("create_dog")
 })
 
+app.get("/users/dog_events/:id/create", checkNotAuthenticated, function(req,res){
+  res.render("create_event", {id: req.params})
+})
+
+app.post("/users/dogs/:id/delete", checkNotAuthenticated, function(req, res){
+  console.log("Request to delete a dog received");
+  console.log(req.params);
+  dogs.destroy({
+    where: {
+      id: req.params.id
+    }
+  });
+  res.redirect("/users/dashboard")
+})
+
 function checkAuthenticated(req, res, next) {
     if (req.isAuthenticated() && req.path == "/users/login" || req.isAuthenticated() && req.path == "/users/register" ) {
       return res.redirect("/users/dashboard");

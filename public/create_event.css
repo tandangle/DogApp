@@ -1,0 +1,18 @@
+#events {
+    margin: 50px 0 0 0;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.card, #header {
+    text-align: center;
+}
+
+.card { 
+    padding: 5px;
+    box-shadow: 5px 5px 3px grey;
+}
+
+#back_button {
+    margin: 10px 0 0 10px;
+}

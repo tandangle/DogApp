@@ -5,28 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <base href="/">
-    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
-    
+<div id="header">
+    <div>
     <h1>Welcome <%= user %> </h1>
 
-    <a href="/users/create_dog"  class="btn btn-lg btn-secondary">Create a dog!</a>
+    <a href="/users/create_dog"  class="btn btn-lg btn-secondary">Add a dog!</a>
+    
+    <% if (typeof dogs != 'undefined') { %> 
+    <div id="title">
+        <h2>
+            Click on a dog to do something!
+        </h2>
+    </div>
+        <% } %>
+    
+
+    </div>
+</div>
+
+
 
     <div id="dogs">
+
         <% if (typeof dogs != 'undefined') { %> <% dogs.forEach(function(dog) { %>
-            <div class="card" style="width: 18rem;">
-                <img src="/images/dog_icon.png" class="card-img-top" alt="...">
+            <div class="card" id="dog" style="width: 18rem;">
+                <button type="button" class="btn-primary remove" data-toggle="modal" data-target="#modal<%= dog.id %>">
+                    Remove
+                  </button>
+                <a href="/users/dog_events/<%= dog.id %>/create"><img src="/images/dog_icon.png" class="card-img-top" alt="..."></a>
                 <div class="card-body">
                   <p class="card-text"><%= dog.name %></p>
                 </div>
               </div>
+            
+              <div class="modal fade" id="modal<%= dog.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delet this dog?</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        This action is permanent and can't be undone!
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <form action="/users/dogs/<%= dog.id %>/delete" method="POST">
+                      <button type="button submit" class="btn btn-primary">Delete</button>
+                    </form>
+                    </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
             <% }) %> <% } %>
     </div>
 
-    <a href="/users/logout">Logout</a>
+    <div id="logout"><a href="/users/logout">Logout</a></div>
 
-
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
