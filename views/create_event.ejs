@@ -8,28 +8,48 @@
     <link rel="stylesheet" href="bootstrap.min.css">
     <link rel="stylesheet" href="create_event.css">
     <link href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="/images/favicon.png" />
 </head>
 <body>
 <div id="back_button">
-    <a href="/users/dashboard" class="btn btn-lg btn-secondary">Go back</a>
+    <a href="/users/dashboard" class="btn btn-lg btn-secondary">Back to dashboard</a>
 </div>
 <div id="header">
     <h2>What would you like to add for your dog?</h2>
 </div>
+<div id="displayarea">
     <div id="events">
-            <div class="card" style="width: 18rem;">
+            <div class="card" id="addFood" style="width: 18rem;">
                 <img src="/images/dog_food_event.png" class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="card-text">Food</p>
                 </div>
             </div>
-            <div class="card" style="width: 18rem;">
+            <div class="card" id="addWalk" style="width: 18rem;">
                 <img src="/images/dog-walker.png" class="card-img-top" alt="...">
                 <div class="card-body">
                   <p class="card-text">Walk/Potty</p>
                 </div>
               </div>
+    </div>
+<div id="events2container">
+    <img id="foodArrow" src="/images/back_button.png" width="40px" height="40px">
+    <div id="events2">
+        <div class="card" style="width: 18rem;">
+            <img src="/images/wet_food.png" class="card-img-top" alt="...">
+            <div class="card-body">
+                <p class="card-text">Wet food</p>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <img src="/images/dry_food.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">Dry food</p>
+            </div>
           </div>
-      </div>
+    </div>
+</div>
+</div>
+<script src="events.js"></script>
 </body>
 </html>

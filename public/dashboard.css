@@ -6,6 +6,10 @@ body {
     height: 100%
 }
 
+#addDog {
+    margin: 25px 0 0 0;
+}
+
 #logout {
     position: fixed;
     bottom: 0;
@@ -76,7 +80,14 @@ body {
     margin-left:auto; 
     margin-right:1px;
     text-align: center;
-    padding: 5px;
+    padding: 8px;
     font-size: 12px;
     border-radius: 3px;
+}
+
+.card:hover {
+    cursor: pointer;
+    border-color:#fbd157;
+    border-width: 4px;
+    padding: 1px;
 }

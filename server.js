@@ -77,7 +77,7 @@ function(email, password, done) {
                 return done(null, user);
             } else {
               console.log(result == false);
-                return done(null, false, { message: "Incorrect password"})
+                return done(null, false, { message: "Incorrect passwordt"})
             }
         });
       })

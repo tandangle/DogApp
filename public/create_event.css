@@ -2,10 +2,60 @@ html, head, body {
     font-family: 'Roboto', sans-serif;
   }
 
+* {
+    background-color: white;
+}
+
+#displayarea {
+    position: relative;
+    width: 100%;
+}
+
 #events {
+    width: 100%;
     margin: 50px 0 0 0;
     display: flex;
     justify-content: space-evenly;
+    animation: slideIn 1s forwards;
+    position: absolute;
+    z-index: 0;
+}
+
+#events2container {
+    height: auto;
+    left: 2000px;
+    position: absolute;
+    width: 100%;
+}
+
+#events2 {
+    width: 100%;
+    margin: 0 0 0 0;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: white;
+    position: absolute;
+}
+
+#foodArrow {
+    align-self: flex-start;
+    margin: 20px 0 0 150px;
+}  
+
+.card:hover {
+    cursor: pointer;
+    border-color:#fbd157;
+    border-width: 4px;
+    padding: 1px;
+}
+
+@keyframes slideIn {
+    0% {
+      transform: translateX(2000px);
+    }
+    100% {
+      transform: translateX(0);
+    }
 }
 
 .card, #header {
@@ -19,4 +69,8 @@ html, head, body {
 
 #back_button {
     margin: 10px 0 0 10px;
+}
+
+img {
+    opacity: 1;
 }

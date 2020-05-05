@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="dashboard.css">
     <link href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="/images/favicon.png" />
 </head>
 <body>
 <div id="header">
@@ -16,7 +17,7 @@
   <div>
     <h1>Welcome <%= user %> </h1>
 
-    <a href="/users/create_dog"  class="btn btn-lg btn-secondary">Add a dog!</a>
+    <a href="/users/create_dog"  class="btn btn-lg btn-secondary" id="addDog">Add a dog!</a>
     
     <% if (!dogs) { %> 
     <div id="title">
