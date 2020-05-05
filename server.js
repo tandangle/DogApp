@@ -38,6 +38,24 @@ users.init({
         timestamps: false,
 });
 
+class dogs extends Model {};
+
+dogs.init({
+    name: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    user_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+    }
+},
+    {   sequelize, 
+        modelName: 'dogs', 
+        tableName: 'dogs',
+        timestamps: false,
+});
+
 
 passport.use(new LocalStrategy({
     usernameField: 'email'
@@ -125,7 +143,11 @@ app.get("/users/login", checkAuthenticated, function(req, res){
 
 app.get("/users/dashboard", checkNotAuthenticated, function(req, res){
     console.log(req.isAuthenticated());
-    res.render("dashboard", { user: req.user.name });
+    dogs.findAll( {raw: true, where: { user_id: req.user.id }})
+    .then(function(dogs){
+      console.log(dogs);
+      res.render("dashboard", { user: req.user.name, dogs: dogs });
+    })
 });
 
 app.get("/users/logout", function(req, res) {
@@ -185,8 +207,22 @@ app.post(
     })
   );
 
+app.post( "/users/dogs", async function(req, res){
+  let {dog_name} = req.body;
+  console.log(req.body);
+  const dog = await dogs.create(({name: req.body.dog_name, user_id: req.user.id}))
+  .then(function(dog){
+    console.log(dog)
+  })
+  res.redirect("/users/dashboard");
+})
+
+app.get("/users/create_dog", checkNotAuthenticated, function(req, res){
+  res.render("create_dog")
+})
+
 function checkAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
+    if (req.isAuthenticated() && req.path == "/users/login" || req.isAuthenticated() && req.path == "/users/register" ) {
       return res.redirect("/users/dashboard");
     }
     next();

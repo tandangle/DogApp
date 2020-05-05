@@ -1,0 +1,67 @@
+#first, #second, #nameText, #nameInput, #ageText, #ageInput {
+    display: none;
+}
+
+
+#nameButton {
+    visibility: hidden;
+}
+
+
+#buttons {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 150px 0;
+}
+
+#nameText {
+    margin: 0 25px 0 0;
+}
+
+#displayarea, form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:100%;
+    flex-wrap:wrap;
+}
+
+#inputDiv {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+
+input {
+    width: 35%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: none;
+    border-bottom: 2px solid black;
+    text-align: center;
+    font-size: 3em;
+}
+
+input:focus {
+    background-color: lightblue;
+    outline: none;
+}
+
+::placeholder {
+    text-align: center;
+    font-size: 0.5em;
+}
+
+button {
+    border-radius: 12px;
+    width: 150px;
+    height: 50px;
+    margin: auto;
+    font-size: 1.2em;
+}

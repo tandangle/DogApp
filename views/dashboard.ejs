@@ -6,10 +6,24 @@
     <title>Document</title>
     <base href="/">
     <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
     
     <h1>Welcome <%= user %> </h1>
+
+    <a href="/users/create_dog"  class="btn btn-lg btn-secondary">Create a dog!</a>
+
+    <div id="dogs">
+        <% if (typeof dogs != 'undefined') { %> <% dogs.forEach(function(dog) { %>
+            <div class="card" style="width: 18rem;">
+                <img src="/images/dog_icon.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text"><%= dog.name %></p>
+                </div>
+              </div>
+            <% }) %> <% } %>
+    </div>
 
     <a href="/users/logout">Logout</a>
 

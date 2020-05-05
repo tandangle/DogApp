@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <base href="/">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="dog.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <div id='displayarea'>
+        <h1 id="first">Welcome to DogApp!</h1>
+        <h1 id="second">To get started, tell us about your dog</h1>
+            <div id="inputDiv">
+                <form action="/users/dogs" method="POST">
+                <h1 id="nameText">What's your dog's name?</h1>
+                <input
+                  type="dog_name"
+                  id="nameInput"
+                  name="dog_name"
+                  placeholder="Enter your dog's name"
+                  required/>
+            </div>
+            <button id="nameButton" type="submit">Next</button>
+        </form>
+        </div>
+
+    <script src="dog.js"></script>
+
+
+</body>
+</html>
