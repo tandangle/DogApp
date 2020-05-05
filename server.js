@@ -56,6 +56,37 @@ dogs.init({
         timestamps: false,
 });
 
+class food extends Model {};
+
+food.init({
+  dog_id: {
+    type: Sequelize.INTEGER,
+    allowNull: true,
+    references: {model: dogs, key: "id"}
+  },
+  type_of_food: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  time: {
+    type: Sequelize.DATE,
+    allowNull: false
+  }
+},
+  {
+    sequelize,
+    modelName: "food",
+    tableName: "food",
+    timestamps: false
+  }
+)
+
+food.belongsTo(dogs, 
+  {foreignKey:"id"
+});
+dogs.hasMany(food, 
+  {onDelete: "SET NULL" 
+});
 
 passport.use(new LocalStrategy({
     usernameField: 'email'
@@ -141,7 +172,7 @@ app.get("/users/login", checkAuthenticated, function(req, res){
 });
 
 app.get("/users/dashboard", checkNotAuthenticated, function(req, res){
-    console.log(req.isAuthenticated());
+    console.log("The request to the dashboard is " + req.isAuthenticated());
     dogs.findAll( {raw: true, where: { user_id: req.user.id }})
     .then(function(dogs){
       console.log(dogs);
@@ -206,7 +237,7 @@ app.post(
     })
   );
 
-app.post( "/users/dogs", async function(req, res){
+app.post("/users/dogs", async function(req, res){
   let {dog_name} = req.body;
   console.log(req.body);
   const dog = await dogs.create(({name: req.body.dog_name, user_id: req.user.id}))
@@ -221,18 +252,30 @@ app.get("/users/create_dog", checkNotAuthenticated, function(req, res){
 })
 
 app.get("/users/dog_events/:id/create", checkNotAuthenticated, function(req,res){
-  res.render("create_event", {id: req.params})
+  res.render("create_event", {id: req.params.id})
 })
 
-app.post("/users/dogs/:id/delete", checkNotAuthenticated, function(req, res){
+app.post("/users/dogs/:id/delete", checkNotAuthenticated, async function(req, res){
   console.log("Request to delete a dog received");
   console.log(req.params);
-  dogs.destroy({
+  await dogs.destroy({
     where: {
       id: req.params.id
     }
+  })
+  .then(function(){
+    res.redirect("/users/dashboard")
+  })
+})
+
+app.post("/users/dog_events/:id/create/food/wet/now", checkNotAuthenticated, async function(req, res){
+  console.log(req.params.id);
+  const foodEvent = await food.create(({dog_id: req.params.id, type_of_food: "wet", time: sequelize.fn('NOW')}))
+  .then(function(foodEvent){
+    console.log(foodEvent)
   });
-  res.redirect("/users/dashboard")
+  console.log("Trying to redirect to dashboard");
+  res.redirect("/users/dashboard");
 })
 
 function checkAuthenticated(req, res, next) {
@@ -242,7 +285,7 @@ function checkAuthenticated(req, res, next) {
     next();
   }
   
-  function checkNotAuthenticated(req, res, next) {
+function checkNotAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
       return next();
     }

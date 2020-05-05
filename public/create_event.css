@@ -28,6 +28,13 @@ html, head, body {
     width: 100%;
 }
 
+#events_food_wet_container {
+    height: auto;
+    position: absolute;
+    width: 100%;
+    left: 2000px;
+}
+
 #events2 {
     width: 100%;
     margin: 0 0 0 0;
@@ -41,6 +48,15 @@ html, head, body {
     align-self: flex-start;
     margin: 20px 0 0 150px;
 }  
+
+#food_wet_arrow {
+    align-self: flex-start;
+    margin: 20px 0 200px 150px;
+}
+
+.backarrow:hover {
+    cursor: pointer;
+}
 
 .card:hover {
     cursor: pointer;
