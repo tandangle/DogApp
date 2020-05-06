@@ -1,3 +1,5 @@
+
+
 function food() {
     var elem1 = document.getElementById("events");
     var elem2 = document.getElementById("events2container")
@@ -106,3 +108,9 @@ function foodWetBack() {
 }
 
 document.getElementById("food_wet_arrow").addEventListener("click", foodWetBack);
+
+
+
+document.getElementById("wet_now").addEventListener("click", function(){
+  document.getElementById("form_wet_now").submit()
+});

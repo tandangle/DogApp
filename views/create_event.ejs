@@ -52,20 +52,18 @@
 <div id="events_food_wet_container">
     <img class="backarrow" id="food_wet_arrow" src="/images/back_button.png" width="40px" height="40px">
     <div id="events2">
-        <div class="card" style="width: 18rem;">
-            <form action="/users/dog_events/<%= id %>/create/food/wet/now" method="POST" id="submit_wet_food_now">
-            <button type="submit">
-                <div class="card-body">
-                    <p class="card-text">My dog ate just now</p>
-                </div>
-            </button>
-            </form>
+    <form action="/users/dog_events/<%= id %>/create/food/wet/now" method="POST" id="form_wet_now">
+        <div class="card" style="width: 18rem;" id="wet_now">
+            <div class="card-body">
+                <p class="card-text">My dog ate just now</p>
+            </div>
         </div>
+    </form>
         <div class="card" style="width: 18rem;">
             <div class="card-body">
               <p class="card-text">My dog ate at specific time</p>
             </div>
-          </div>
+        </div>
     </div>
 </div>
 </div>
