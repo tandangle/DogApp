@@ -43,6 +43,8 @@
                 <a href="/users/dog_events/<%= dog.id %>/create"><img src="/images/dog_icon.png" class="card-img-top" alt="..."></a>
                 <div class="card-body">
                   <p class="card-text"><%= dog.name %></p>
+                  <hr>
+                  <p class="card-text">Last fed: <% if (typeof dog.food[0] !== "undefined") { %> <%= dog.food[0].time %> <% } %></p>
                 </div>
               </div>
             

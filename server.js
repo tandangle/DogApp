@@ -183,7 +183,6 @@ app.get("/users/dashboard", checkNotAuthenticated, function (req, res) {
     order: [
       [food, "id", "DESC"]
     ], 
-    raw: true, 
     where: { user_id: req.user.id }})
     .then(function (dogs) {
       console.log(dogs);
