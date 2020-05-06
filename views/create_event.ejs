@@ -32,6 +32,7 @@
                 </div>
               </div>
     </div>
+
 <div id="events2container">
     <img id="foodArrow" class="backarrow" src="/images/back_button.png" width="40px" height="40px">
     <div id="events2">
@@ -49,6 +50,7 @@
           </div>
     </div>
 </div>
+
 <div id="events_food_wet_container">
     <img class="backarrow" id="food_wet_arrow" src="/images/back_button.png" width="40px" height="40px">
     <div id="events2">
@@ -66,6 +68,45 @@
         </div>
     </div>
 </div>
+
+<div id="events_food_dry_container">
+    <img class="backarrow" id="food_dry_arrow" src="/images/back_button.png" width="40px" height="40px">
+    <div id="events_food_dry">
+    <form action="/users/dog_events/<%= id %>/create/food/dry/now" method="POST" id="form_dry_now">
+        <div class="card" style="width: 18rem;" id="dry_now">
+            <div class="card-body">
+                <p class="card-text">My dog ate just now</p>
+            </div>
+        </div>
+    </form>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <p class="card-text">My dog ate at specific time</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="events_potty_container">
+    <img class="backarrow" id="events_potty_arrow" src="/images/back_button.png" width="40px" height="40px">
+    <div id="events_potty">
+    <form action="/users/dog_events/<%= id %>/create/food/wet/now" method="POST" id="form_wet_now">
+        <div class="card" style="width: 18rem;" id="pee">
+        <img src="/images/dog_pee.png" class="card-img-top" alt="...">
+            <div class="card-body">
+                <p class="card-text">Pee</p>
+            </div>
+        </div>
+    </form>
+        <div class="card" style="width: 18rem;" id="poop">
+        <img src="/images/dog_poop.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">Poop</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 </div>
 <script src="events.js"></script>
 </body>

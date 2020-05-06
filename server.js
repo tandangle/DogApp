@@ -102,10 +102,8 @@ passport.use(new LocalStrategy({
   usernameField: 'email'
 },
   function (email, password, done) {
-    console.log(email)
     users.findAll({ raw: true, where: { email_address: email } })
       .then(function (user) {
-        console.log(user[0]);
         if (!user[0]) {
           return done(null, false, { message: 'Incorrect username.' });
         }
@@ -117,8 +115,7 @@ passport.use(new LocalStrategy({
           } else if (result == true) {
             return done(null, user);
           } else {
-            console.log(result == false);
-            return done(null, false, { message: "Incorrect passwordt" })
+            return done(null, false, { message: "Incorrect password" })
           }
         });
       })
@@ -132,7 +129,6 @@ passport.serializeUser(function (user, done) {
 passport.deserializeUser(function (id, done) {
   users.findAll({ raw: true, where: { id: id } })
     .then(function (user, err) {
-      console.log(user)
       done(err, user[0]);
     });
 });
@@ -182,10 +178,8 @@ app.get("/users/login", checkAuthenticated, function (req, res) {
 });
 
 app.get("/users/dashboard", checkNotAuthenticated, function (req, res) {
-  console.log("The request to the dashboard is " + req.isAuthenticated());
   dogs.findAll({ raw: true, where: { user_id: req.user.id } })
     .then(function (dogs) {
-      console.log(dogs);
       res.render("dashboard", { user: req.user.name, dogs: dogs });
     })
 });
@@ -216,7 +210,6 @@ app.post("/users/register", async function (req, res) {
     res.render("register", { errors, name, email, password, password2 });
   } else {
     hashedPassword = await bcrypt.hash(password, 10);
-    console.log(hashedPassword);
     // Validation passed
     let results = await users.findAll({
       raw: true,
@@ -224,14 +217,10 @@ app.post("/users/register", async function (req, res) {
         email_address: email
       }
     })
-    console.log(results);
-    console.log(typeof results)
     if (results[0]) {
-      console.log("Email already exists")
       return res.render("register", { message: "Email already registered" });
     } else {
       const user = await users.create({ name: name, email_address: email, password: hashedPassword });
-      console.log(user.id)
       req.flash("success_msg", "You are now registered. Please log in");
       res.redirect("/users/login");
     }
@@ -249,10 +238,8 @@ app.post(
 
 app.post("/users/dogs", async function (req, res) {
   let { dog_name } = req.body;
-  console.log(req.body);
   const dog = await dogs.create(({ name: req.body.dog_name, user_id: req.user.id }))
     .then(function (dog) {
-      console.log(dog)
     })
   res.redirect("/users/dashboard");
 })
@@ -266,8 +253,6 @@ app.get("/users/dog_events/:id/create", checkNotAuthenticated, function (req, re
 })
 
 app.post("/users/dogs/:id/delete", checkNotAuthenticated, async function (req, res) {
-  console.log("Request to delete a dog received");
-  console.log(req.params);
   await dogs.destroy({
     where: {
       id: req.params.id
@@ -283,13 +268,17 @@ app.post("/users/dogs/:id/delete", checkNotAuthenticated, async function (req, r
 })
 
 app.post("/users/dog_events/:id/create/food/wet/now", checkNotAuthenticated, async function (req, res) {
-  console.log(req.params.id);
   await food.create(({ dog_id: req.params.id, type_of_food: "wet", time: sequelize.fn('NOW') }))
-    .then(function (foodEvent) {
-      console.log(foodEvent)
-    });
-  console.log("Trying to redirect to dashboard");
-  res.redirect("/users/dashboard");
+  .then(function(){
+    res.redirect("/users/dashboard");
+  })
+})
+
+app.post("/users/dog_events/:id/create/food/dry/now", checkNotAuthenticated, async function (req, res) {
+  await food.create(({ dog_id: req.params.id, type_of_food: "dry", time: sequelize.fn('NOW') }))
+  .then(function(){
+    res.redirect("/users/dashboard");
+  })
 })
 
 function checkAuthenticated(req, res, next) {

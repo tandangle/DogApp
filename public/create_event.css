@@ -21,21 +21,14 @@ html, head, body {
     z-index: 0;
 }
 
-#events2container {
+#events2container, #events_potty_container, #events_food_wet_container, #events_food_dry_container {
     height: auto;
     left: 2000px;
     position: absolute;
     width: 100%;
 }
 
-#events_food_wet_container {
-    height: auto;
-    position: absolute;
-    width: 100%;
-    left: 2000px;
-}
-
-#events2 {
+#events2, #events_potty, #events_food_dry {
     width: 100%;
     margin: 0 0 0 0;
     display: flex;
@@ -44,12 +37,13 @@ html, head, body {
     position: absolute;
 }
 
-#foodArrow {
+#foodArrow, #events_potty_arrow {
     align-self: flex-start;
     margin: 20px 0 0 150px;
+
 }  
 
-#food_wet_arrow {
+#food_wet_arrow, #food_dry_arrow {
     align-self: flex-start;
     margin: 20px 0 200px 150px;
 }
