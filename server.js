@@ -178,9 +178,16 @@ app.get("/users/login", checkAuthenticated, function (req, res) {
 });
 
 app.get("/users/dashboard", checkNotAuthenticated, function (req, res) {
-  dogs.findAll({ raw: true, where: { user_id: req.user.id } })
+  dogs.findAll({
+    include: food,
+    order: [
+      [food, "id", "DESC"]
+    ], 
+    raw: true, 
+    where: { user_id: req.user.id }})
     .then(function (dogs) {
-      res.render("dashboard", { user: req.user.name, dogs: dogs });
+      console.log(dogs);
+      res.render("dashboard", { user: req.user.name, dogs: dogs});
     })
 });
 
