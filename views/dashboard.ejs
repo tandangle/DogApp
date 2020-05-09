@@ -44,7 +44,16 @@
                 <div class="card-body">
                   <p class="card-text"><%= dog.name %></p>
                   <hr>
-                  <p class="card-text">Last fed: <% if (typeof dog.food[0] !== "undefined") { %> <%= dog.food[0].time %> <% } %></p>
+                  <p class="card-text">Last fed: 
+                    <% if (typeof dog.food[0] !== "undefined" && dog.food[0].type_of_food == "wet") { %> Wet food at <% } %>
+                    <% if (typeof dog.food[0] !== "undefined" && dog.food[0].type_of_food == "dry") { %> Dry food at <% } %>
+                    <% if (typeof dog.food[0] !== "undefined") { %> <%= dog.food[0].time %> <% } %>
+                  </p>
+                  <p class="card-text">Last potty: 
+                    <% if (typeof dog.potties[0] !== "undefined" && dog.potties[0].pee == true) { %> Pee at <% } %>
+                    <% if (typeof dog.potties[0] !== "undefined" && dog.potties[0].poop == true) { %> Poo at <% } %>
+                    <% if (typeof dog.potties[0] !== "undefined") { %> <%= dog.potties[0].time %> <% } %>
+                  </p>
                 </div>
               </div>
             

@@ -7,6 +7,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const session = require("express-session");
 const cookieParser = require('cookie-parser');
 const flash = require("express-flash");
+// const async = require("async");
 
 
 const sequelize = new Sequelize('DogApp', 'postgres', 'postgres', {
@@ -84,16 +85,57 @@ food.init({
   }
 )
 
+class potty extends Model { };
+
+potty.init({
+  dog_id: {
+    type: Sequelize.INTEGER,
+    allowNull: true,
+    references: { model: dogs, key: "id" }
+  },
+  poop: {
+    type: Sequelize.BOOLEAN,
+    allowNull: true
+  },
+  pee: {
+    type: Sequelize.BOOLEAN,
+    allowNull: true
+  },
+  time: {
+    type: Sequelize.DATE,
+    allowNull: false
+  }
+},
+  {
+    sequelize,
+    modelName: "potty",
+    tableName: "potty",
+    timestamps: false
+  }
+)
+
 food.belongsTo(dogs,
 {
     foreignKey: 'id'
 })
 
+potty.belongsTo(dogs,
+{
+    foreignKey: 'id'
+})
 
 dogs.hasMany(food,
 {
   foreignKey: 'dog_id'
 }, 
+{
+  onDelete: "CASCADE"
+})
+
+dogs.hasMany(potty,
+{
+  foreignKey: 'dog_id'
+},
 {
   onDelete: "CASCADE"
 })
@@ -179,13 +221,27 @@ app.get("/users/login", checkAuthenticated, function (req, res) {
 
 app.get("/users/dashboard", checkNotAuthenticated, function (req, res) {
   dogs.findAll({
-    include: food,
-    order: [
-      [food, "id", "DESC"]
-    ], 
+    include: [
+      {
+        model: food,
+        order: [
+          [food, "id", "DESC"]
+        ]
+      },
+      {
+        model: potty,
+        order: [
+          [potty, "id", "DESC"]
+        ]
+      }
+    ],
     where: { user_id: req.user.id }})
     .then(function (dogs) {
       console.log(dogs);
+      // dogs.forEach(function(dog){
+      //   console.log(dog.food)
+      //   console.log(dog.potties)
+      // })
       res.render("dashboard", { user: req.user.name, dogs: dogs});
     })
 });
@@ -287,6 +343,16 @@ app.post("/users/dog_events/:id/create/food/dry/now", checkNotAuthenticated, asy
   })
 })
 
+app.post("/users/dog_events/:id/create/potty/pee/now", checkNotAuthenticated, async function (req, res) {
+  await potty.create(({ dog_id: req.params.id, pee: true, time: sequelize.fn('NOW') }))
+  .then(function(){
+    res.redirect("/users/dashboard");
+  })
+  .catch(function(e){
+    console.log(e)
+  })
+})
+
 function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated() && req.path == "/users/login" || req.isAuthenticated() && req.path == "/users/register") {
     return res.redirect("/users/dashboard");
@@ -300,7 +366,6 @@ function checkNotAuthenticated(req, res, next) {
   }
   res.redirect("/users/login");
 }
-
 
 app.listen(PORT, function () {
   console.log(`Server listening on port ${PORT}`)

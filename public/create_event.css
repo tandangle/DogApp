@@ -21,14 +21,16 @@ html, head, body {
     z-index: 0;
 }
 
-#events2container, #events_potty_container, #events_food_wet_container, #events_food_dry_container {
+#events2container, #events_potty_container, 
+#events_food_wet_container, #events_food_dry_container, 
+#events_potty_container_pee, #events_potty_container_poo  {
     height: auto;
     left: 2000px;
     position: absolute;
     width: 100%;
 }
 
-#events2, #events_potty, #events_food_dry {
+#events2, #events_potty, #events_food_dry, #events_pee, #events_poo {
     width: 100%;
     margin: 0 0 0 0;
     display: flex;
@@ -37,7 +39,7 @@ html, head, body {
     position: absolute;
 }
 
-#foodArrow, #events_potty_arrow {
+#foodArrow, #events_potty_arrow, #events_potty_pee_arrow, #events_potty_poo_arrow {
     align-self: flex-start;
     margin: 20px 0 0 150px;
 
