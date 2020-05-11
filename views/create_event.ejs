@@ -73,10 +73,12 @@
 
 <div id="events_food_wet_date_container">
     <img class="backarrow" id="food_wet_date_arrow" src="/images/back_button.png" width="40px" height="40px">
+    <div id="events_food_wet_date">
     <form id="wet_food_datepicker" action="/users/dog_events/<%= id %>/create/food/wet/datepicker" method="POST">
         <input class="flatpickr" type="text" name="date" placeholder="Select a date..." id="date"></input>
         <button type="submit" value="Submit!">Submit</button>
         </form>
+    </div>
 </div>
 
 <div id="events_food_dry_container">
@@ -89,11 +91,21 @@
             </div>
         </div>
     </form>
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 18rem;" id="dry_date">
             <div class="card-body">
               <p class="card-text">My dog ate at specific time</p>
             </div>
         </div>
+    </div>
+</div>
+
+<div id="events_food_dry_date_container">
+    <img class="backarrow" id="food_dry_date_arrow" src="/images/back_button.png" width="40px" height="40px">
+    <div id="events_food_dry_date">
+    <form id="dry_food_datepicker" action="/users/dog_events/<%= id %>/create/food/dry/datepicker" method="POST">
+        <input class="flatpickr" type="text" name="date" placeholder="Select a date..." id="date"></input>
+        <button type="submit" value="Submit!">Submit</button>
+        </form>
     </div>
 </div>
 
@@ -127,11 +139,21 @@
             </div>
         </div>
     </form>
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 18rem;" id="pee_date">
             <div class="card-body">
               <p class="card-text">My dog peed at specific time</p>
             </div>
         </div>
+    </div>
+</div>
+
+<div id="events_potty_pee_date_container">
+    <img class="backarrow" id="potty_pee_date_arrow" src="/images/back_button.png" width="40px" height="40px">
+    <div id="events_potty_pee_date">
+    <form id="potty_pee_datepicker" action="/users/dog_events/<%= id %>/create/potty/pee/datepicker" method="POST">
+        <input class="flatpickr" type="text" name="date" placeholder="Select a date..." id="date"></input>
+        <button type="submit" value="Submit!">Submit</button>
+        </form>
     </div>
 </div>
 
@@ -145,11 +167,21 @@
             </div>
         </div>
     </form>
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 18rem;" id="poop_date">
             <div class="card-body">
               <p class="card-text">My dog pood at specific time</p>
             </div>
         </div>
+    </div>
+</div>
+
+<div id="events_potty_poo_date_container">
+    <img class="backarrow" id="potty_poo_date_arrow" src="/images/back_button.png" width="40px" height="40px">
+    <div id="events_potty_poo_date">
+    <form id="potty_poo_datepicker" action="/users/dog_events/<%= id %>/create/potty/poop/datepicker" method="POST">
+        <input class="flatpickr" type="text" name="date" placeholder="Select a date..." id="date"></input>
+        <button type="submit" value="Submit!">Submit</button>
+        </form>
     </div>
 </div>
 

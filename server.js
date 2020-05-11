@@ -225,21 +225,14 @@ app.get("/users/dashboard", checkNotAuthenticated, function (req, res) {
   dogs.findAll({
     include: [
       {
-        model: food,
-        order: [
-          [food, "id", "DESC"]
-        ]
+        model: food
       },
       {
-        model: potty,
-        order: [
-          [potty, "id", "DESC"]
-        ]
+        model: potty
       }
     ],
     where: { user_id: req.user.id }})
     .then(function (dogs) {
-      console.log(dogs);
       res.render("dashboard", { user: req.user.name, dogs: dogs, moment: moment});
     })
 });
@@ -309,7 +302,7 @@ app.get("/users/create_dog", checkNotAuthenticated, function (req, res) {
 })
 
 app.get("/users/dog_events/:id/create", checkNotAuthenticated, function (req, res) {
-  res.render("create_event", { id: req.params.id })
+    res.render("create_event", { id: req.params.id})
 })
 
 app.post("/users/dogs/:id/delete", checkNotAuthenticated, async function (req, res) {
@@ -351,6 +344,15 @@ app.post("/users/dog_events/:id/create/food/dry/now", checkNotAuthenticated, asy
   })
 })
 
+app.post("/users/dog_events/:id/create/food/dry/datepicker", checkNotAuthenticated, async function (req, res) {
+  console.log("request to create specific food event received");
+  console.log(req.body)
+  await food.create(({ dog_id: req.params.id, type_of_food: "dry", time: req.body.date }))
+  .then(function(){
+    res.redirect("/users/dashboard");
+  })
+})
+
 app.post("/users/dog_events/:id/create/potty/pee/now", checkNotAuthenticated, async function (req, res) {
   await potty.create(({ dog_id: req.params.id, pee: true, time: sequelize.fn('NOW') }))
   .then(function(){
@@ -361,8 +363,28 @@ app.post("/users/dog_events/:id/create/potty/pee/now", checkNotAuthenticated, as
   })
 })
 
+app.post("/users/dog_events/:id/create/potty/pee/datepicker", checkNotAuthenticated, async function (req, res) {
+  await potty.create(({ dog_id: req.params.id, pee: true, time: req.body.date }))
+  .then(function(){
+    res.redirect("/users/dashboard");
+  })
+  .catch(function(e){
+    console.log(e)
+  })
+})
+
 app.post("/users/dog_events/:id/create/potty/poop/now", checkNotAuthenticated, async function (req, res) {
   await potty.create(({ dog_id: req.params.id, poop: true, time: sequelize.fn('NOW') }))
+  .then(function(){
+    res.redirect("/users/dashboard");
+  })
+  .catch(function(e){
+    console.log(e)
+  })
+})
+
+app.post("/users/dog_events/:id/create/potty/poop/datepicker", checkNotAuthenticated, async function (req, res) {
+  await potty.create(({ dog_id: req.params.id, poop: true, time: req.body.date }))
   .then(function(){
     res.redirect("/users/dashboard");
   })

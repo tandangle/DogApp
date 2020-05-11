@@ -6,6 +6,7 @@ flatpickr(".flatpickr",
     maxDate: new Date()
 });
 
+
 function food() {
     var elem1 = document.getElementById("events");
     var elem2 = document.getElementById("events2container")
@@ -237,7 +238,63 @@ document.getElementById("dry_now").addEventListener("click", function(){
   document.getElementById("form_dry_now").submit()
 });
 
+// Dry food now/picker > dry food date picker page
 
+function dryfooddate() {
+  var elem1 = document.getElementById("events_food_dry_container");
+  var elem2 = document.getElementById("events_food_dry_date_container")
+  var pos = 0;
+  var id = setInterval(frame, .25);
+  function frame() {
+    if (pos == -2000) {
+      clearInterval(id);
+    } else {
+      pos = pos - 10;
+      elem1.style.left = pos + 'px';
+    }
+  }
+  var pos2 = 2000;
+  var id2 = setInterval(frame2, .25);
+  function frame2() {
+      if (pos2 == 0) {
+          clearInterval(id2)
+      } else {
+          pos2 = pos2 - 10;
+          elem2.style.left = pos2 +"px";
+      } 
+  }
+}
+
+document.getElementById("dry_date").addEventListener("click", dryfooddate);
+
+function foodDryDateBack() {
+  var elem1 = document.getElementById("events_food_dry_container");
+  var elem2 = document.getElementById("events_food_dry_date_container")
+  var pos = -2000;
+  var id = setInterval(frame, .25);
+  function frame() {
+    if (pos == 0) {
+      clearInterval(id);
+    } else {
+      pos = pos + 10;
+      elem1.style.left = pos + 'px';
+    }
+  }
+  var pos2 = 0;
+  var id2 = setInterval(frame2, .25);
+  function frame2() {
+      if (pos2 == 2000) {
+          clearInterval(id2)
+      } else {
+          pos2 = pos2 + 10;
+          elem2.style.left = pos2 +"px";
+      } 
+  }
+}
+
+document.getElementById("food_dry_date_arrow").addEventListener("click", foodDryDateBack);
+
+//
 
 function potty() {
   var elem1 = document.getElementById("events");
@@ -351,6 +408,62 @@ document.getElementById("pee_now").addEventListener("click", function(){
   document.getElementById("form_pee_now").submit()
 });
 
+// Pee now/picker > pee date picker
+
+function peeDate() {
+  var elem1 = document.getElementById("events_potty_container_pee");
+  var elem2 = document.getElementById("events_potty_pee_date_container")
+  var pos = 0;
+  var id = setInterval(frame, .25);
+  function frame() {
+    if (pos == -2000) {
+      clearInterval(id);
+    } else {
+      pos = pos - 10;
+      elem1.style.left = pos + 'px';
+    }
+  }
+  var pos2 = 2000;
+  var id2 = setInterval(frame2, .25);
+  function frame2() {
+      if (pos2 == 0) {
+          clearInterval(id2)
+      } else {
+          pos2 = pos2 - 10;
+          elem2.style.left = pos2 +"px";
+      } 
+  }
+}
+
+document.getElementById("pee_date").addEventListener("click", peeDate);
+
+function peeDateBack() {
+  var elem1 = document.getElementById("events_potty_container_pee");
+  var elem2 = document.getElementById("events_potty_pee_date_container")
+  var pos = -2000;
+  var id = setInterval(frame, .25);
+  function frame() {
+    if (pos == 0) {
+      clearInterval(id);
+    } else {
+      pos = pos + 10;
+      elem1.style.left = pos + 'px';
+    }
+  }
+  var pos2 = 0;
+  var id2 = setInterval(frame2, .25);
+  function frame2() {
+      if (pos2 == 2000) {
+          clearInterval(id2)
+      } else {
+          pos2 = pos2 + 10;
+          elem2.style.left = pos2 +"px";
+      } 
+  }
+}
+
+document.getElementById("potty_pee_date_arrow").addEventListener("click", peeDateBack); 
+
 //
 
 function poop() {
@@ -410,3 +523,59 @@ document.getElementById("events_potty_poo_arrow").addEventListener("click", poop
 document.getElementById("poo_now").addEventListener("click", function(){
   document.getElementById("form_poo_now").submit()
 });
+
+// Poop now / picker > poop date picker
+
+function poopDate() {
+  var elem1 = document.getElementById("events_potty_container_poo");
+  var elem2 = document.getElementById("events_potty_poo_date_container")
+  var pos = 0;
+  var id = setInterval(frame, .25);
+  function frame() {
+    if (pos == -2000) {
+      clearInterval(id);
+    } else {
+      pos = pos - 10;
+      elem1.style.left = pos + 'px';
+    }
+  }
+  var pos2 = 2000;
+  var id2 = setInterval(frame2, .25);
+  function frame2() {
+      if (pos2 == 0) {
+          clearInterval(id2)
+      } else {
+          pos2 = pos2 - 10;
+          elem2.style.left = pos2 +"px";
+      } 
+  }
+}
+
+document.getElementById("poop_date").addEventListener("click", poopDate);
+
+function poopDateBack() {
+  var elem1 = document.getElementById("events_potty_container_poo");
+  var elem2 = document.getElementById("events_potty_poo_date_container");
+  var pos = -2000;
+  var id = setInterval(frame, .25);
+  function frame() {
+    if (pos == 0) {
+      clearInterval(id);
+    } else {
+      pos = pos + 10;
+      elem1.style.left = pos + 'px';
+    }
+  }
+  var pos2 = 0;
+  var id2 = setInterval(frame2, .25);
+  function frame2() {
+      if (pos2 == 2000) {
+          clearInterval(id2)
+      } else {
+          pos2 = pos2 + 10;
+          elem2.style.left = pos2 +"px";
+      } 
+  }
+}
+
+document.getElementById("potty_poo_date_arrow").addEventListener("click", poopDateBack);

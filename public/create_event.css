@@ -23,12 +23,43 @@ html, head, body {
 
 #events2container, #events_potty_container, 
 #events_food_wet_container, #events_food_dry_container, 
-#events_potty_container_pee, #events_potty_container_poo,
-#events_food_wet_date_container  {
+#events_potty_container_pee, #events_potty_container_poo  {
     height: auto;
     left: 2000px;
     position: absolute;
     width: 100%;
+}
+
+#events_food_wet_date_container, #events_food_dry_date_container,
+#events_potty_pee_date_container, #events_potty_poo_date_container {
+    height: 335px;
+    left: 2000px;
+    position: absolute;
+    width: 100%;
+ }
+
+ #events_food_wet_date, #events_food_dry_date,
+ #events_potty_pee_date, #events_potty_poo_date  {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    position: absolute;
+    margin: 200px 0 0 0;
+ }
+
+input {
+    width: 200px;
+    height: 100px;
+    text-align: center;
+}
+
+input[placeholder] {
+    font-size: 1.25em;
+}
+
+button {
+     width: 150px;
+     height: 100px;
 }
 
 #events2, #events_potty, #events_food_dry, #events_pee, #events_poo {
@@ -36,11 +67,12 @@ html, head, body {
     margin: 0 0 0 0;
     display: flex;
     justify-content: space-evenly;
-    background-color: white;
     position: absolute;
 }
 
-#foodArrow, #events_potty_arrow, #events_potty_pee_arrow, #events_potty_poo_arrow {
+#foodArrow, #events_potty_arrow, #events_potty_pee_arrow, 
+#events_potty_poo_arrow, #food_wet_date_arrow, #food_dry_date_arrow,
+#potty_pee_date_arrow, #potty_poo_date_arrow {
     align-self: flex-start;
     margin: 20px 0 0 150px;
 
