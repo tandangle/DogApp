@@ -224,33 +224,21 @@ app.get("/users/dashboard", checkNotAuthenticated, function (req, res) {
   dogs.findAll({
     include: [
       {
-        model: food
+        model: food,
+        order: [
+          [food, "id", "DESC"]
+        ]
+      },
+      {
+        model: potty,
+        order: [
+          [potty, "id", "DESC"]
+        ]
       }
     ],
-    order: [
-      [food, 'time', 'DESC']
-    ],
     where: { user_id: req.user.id }})
-    .then(function (dogs_food) {
-      dogs.findAll({
-        include: [
-          {
-            model: potty
-          }
-        ],
-        order: [
-          [potty, 'time', 'DESC']
-        ],
-        where: { user_id: req.user.id }})
-        .then(function(dogs_potty){
-          // console.log(dogs_food[0].id)
-          // console.log(dogs_potty[0].id)
-          // console.log(dogs_food)
-          // console.log(dogs_potty)
-          // console.log(dogs_food[1].food);
-          // console.log(dogs_potty);      
-        res.render("dashboard", { user: req.user.name, dogs_food: dogs_food, dogs_potty: dogs_potty, moment: moment});
-      })
+    .then(function (dogs) {
+      res.render("dashboard", { user: req.user.name, dogs: dogs, moment: moment});
     })
 });
 
@@ -344,17 +332,7 @@ app.post("/users/dog_events/:id/create/food/wet/now", checkNotAuthenticated, asy
   })
 })
 
-app.post("/users/dog_events/:id/create/food/wet/datepicker", checkNotAuthenticated, async function (req, res) {
-  console.log("request to create specific food event received");
-  console.log(req.body)
-  await food.create(({ dog_id: req.params.id, type_of_food: "wet", time: req.body.date }))
-  .then(function(){
-    res.redirect("/users/dashboard");
-  })
-})
-
 app.post("/users/dog_events/:id/create/food/dry/now", checkNotAuthenticated, async function (req, res) {
-  
   await food.create(({ dog_id: req.params.id, type_of_food: "dry", time: sequelize.fn('NOW') }))
   .then(function(){
     res.redirect("/users/dashboard");

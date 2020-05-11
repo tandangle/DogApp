@@ -23,8 +23,7 @@ html, head, body {
 
 #events2container, #events_potty_container, 
 #events_food_wet_container, #events_food_dry_container, 
-#events_potty_container_pee, #events_potty_container_poo, 
-#events_food_wet_date_container  {
+#events_potty_container_pee, #events_potty_container_poo  {
     height: auto;
     left: 2000px;
     position: absolute;
@@ -40,8 +39,7 @@ html, head, body {
     position: absolute;
 }
 
-#foodArrow, #events_potty_arrow, #events_potty_pee_arrow, 
-#events_potty_poo_arrow, #food_wet_date_arrow {
+#foodArrow, #events_potty_arrow, #events_potty_pee_arrow, #events_potty_poo_arrow {
     align-self: flex-start;
     margin: 20px 0 0 150px;
 

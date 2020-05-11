@@ -19,7 +19,7 @@
 
     <a href="/users/create_dog"  class="btn btn-lg btn-secondary" id="addDog">Add a dog!</a>
     
-    <% if (dogs_potty) { %> 
+    <% if (dogs) { %> 
     <div id="title">
         <h2>
             Click on a dog to do something!
@@ -35,7 +35,7 @@
 
     <div id="dogs">
 
-        <% if (typeof dogs_food != 'undefined') { %> <% dogs_food.forEach(function(dog, i) { %>
+        <% if (typeof dogs != 'undefined') { %> <% dogs.forEach(function(dog, i) { %>
             <div class="card" id="dog" style="width: 18rem;">
                 <button type="button" class="btn-primary remove" data-toggle="modal" data-target="#modal<%= dog.id %>">
                     Remove
@@ -50,9 +50,9 @@
                     <% if (typeof dog.food[0] !== "undefined") { %> <%= moment(dog.food[0].time).local().fromNow() %> <% } %>
                   </p>
                   <p class="card-text">Last potty: 
-                    <% if (typeof dogs_potty[i].potties[0] !== "undefined" && dogs_potty[i].potties[0] == true) { %> Pee <% } %>
-                    <% if (typeof dogs_potty[i].potties[0] !== "undefined" && dogs_potty[i].potties[0] == true) { %> Poo <% } %>
-                    <% if (typeof dogs_potty[i].potties[0] !== "undefined") { %> <%= moment(dogs_potty[i].potties[0].time).local().fromNow() %> <% } %>
+                    <% if (typeof dog.potties[0] !== "undefined" && dog.potties[0].pee == true) { %> Pee <% } %>
+                    <% if (typeof dog.potties[0] !== "undefined" && dog.potties[0].poop == true) { %> Poo <% } %>
+                    <% if (typeof dog.potties[0] !== "undefined") { %> <%= moment(dog.potties[0].time).local().fromNow() %> <% } %>
                   </p>
                 </div>
               </div>
