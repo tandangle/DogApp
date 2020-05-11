@@ -7,6 +7,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const session = require("express-session");
 const cookieParser = require('cookie-parser');
 const flash = require("express-flash");
+const moment = require('moment');
 // const async = require("async");
 
 
@@ -237,12 +238,7 @@ app.get("/users/dashboard", checkNotAuthenticated, function (req, res) {
     ],
     where: { user_id: req.user.id }})
     .then(function (dogs) {
-      console.log(dogs);
-      // dogs.forEach(function(dog){
-      //   console.log(dog.food)
-      //   console.log(dog.potties)
-      // })
-      res.render("dashboard", { user: req.user.name, dogs: dogs});
+      res.render("dashboard", { user: req.user.name, dogs: dogs, moment: moment});
     })
 });
 
@@ -261,7 +257,7 @@ app.post("/users/register", async function (req, res) {
   }
 
   if (password.length < 6) {
-    errors.push({ message: "Password must be a least 6 characters long" });
+    errors.push({ message: "Password must be at least 6 characters long" });
   }
 
   if (password !== password2) {
@@ -345,6 +341,16 @@ app.post("/users/dog_events/:id/create/food/dry/now", checkNotAuthenticated, asy
 
 app.post("/users/dog_events/:id/create/potty/pee/now", checkNotAuthenticated, async function (req, res) {
   await potty.create(({ dog_id: req.params.id, pee: true, time: sequelize.fn('NOW') }))
+  .then(function(){
+    res.redirect("/users/dashboard");
+  })
+  .catch(function(e){
+    console.log(e)
+  })
+})
+
+app.post("/users/dog_events/:id/create/potty/poop/now", checkNotAuthenticated, async function (req, res) {
+  await potty.create(({ dog_id: req.params.id, poop: true, time: sequelize.fn('NOW') }))
   .then(function(){
     res.redirect("/users/dashboard");
   })

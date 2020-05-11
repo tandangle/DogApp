@@ -19,7 +19,7 @@
 
     <a href="/users/create_dog"  class="btn btn-lg btn-secondary" id="addDog">Add a dog!</a>
     
-    <% if (!dogs) { %> 
+    <% if (dogs) { %> 
     <div id="title">
         <h2>
             Click on a dog to do something!
@@ -35,7 +35,7 @@
 
     <div id="dogs">
 
-        <% if (typeof dogs != 'undefined') { %> <% dogs.forEach(function(dog) { %>
+        <% if (typeof dogs != 'undefined') { %> <% dogs.forEach(function(dog, i) { %>
             <div class="card" id="dog" style="width: 18rem;">
                 <button type="button" class="btn-primary remove" data-toggle="modal" data-target="#modal<%= dog.id %>">
                     Remove
@@ -45,14 +45,14 @@
                   <p class="card-text"><%= dog.name %></p>
                   <hr>
                   <p class="card-text">Last fed: 
-                    <% if (typeof dog.food[0] !== "undefined" && dog.food[0].type_of_food == "wet") { %> Wet food at <% } %>
-                    <% if (typeof dog.food[0] !== "undefined" && dog.food[0].type_of_food == "dry") { %> Dry food at <% } %>
-                    <% if (typeof dog.food[0] !== "undefined") { %> <%= dog.food[0].time %> <% } %>
+                    <% if (typeof dog.food[0] !== "undefined" && dog.food[0].type_of_food == "wet") { %> Wet food <% }  %>
+                    <% if (typeof dog.food[0] !== "undefined" && dog.food[0].type_of_food == "dry") { %> Dry food <% } %>
+                    <% if (typeof dog.food[0] !== "undefined") { %> <%= moment(dog.food[0].time).local().fromNow() %> <% } %>
                   </p>
                   <p class="card-text">Last potty: 
-                    <% if (typeof dog.potties[0] !== "undefined" && dog.potties[0].pee == true) { %> Pee at <% } %>
-                    <% if (typeof dog.potties[0] !== "undefined" && dog.potties[0].poop == true) { %> Poo at <% } %>
-                    <% if (typeof dog.potties[0] !== "undefined") { %> <%= dog.potties[0].time %> <% } %>
+                    <% if (typeof dog.potties[0] !== "undefined" && dog.potties[0].pee == true) { %> Pee <% } %>
+                    <% if (typeof dog.potties[0] !== "undefined" && dog.potties[0].poop == true) { %> Poo <% } %>
+                    <% if (typeof dog.potties[0] !== "undefined") { %> <%= moment(dog.potties[0].time).local().fromNow() %> <% } %>
                   </p>
                 </div>
               </div>
