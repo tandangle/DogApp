@@ -1,5 +1,7 @@
 # DogApp
 
+Hosted at: https://dogapp-dog-go.herokuapp.com/
+
 
 Personal project by Tan Le-Dang
 
