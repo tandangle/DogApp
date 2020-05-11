@@ -220,6 +220,7 @@ app.get("/users/login", checkAuthenticated, function (req, res) {
   res.render("login")
 });
 
+
 app.get("/users/dashboard", checkNotAuthenticated, function (req, res) {
   dogs.findAll({
     include: [
@@ -238,6 +239,7 @@ app.get("/users/dashboard", checkNotAuthenticated, function (req, res) {
     ],
     where: { user_id: req.user.id }})
     .then(function (dogs) {
+      console.log(dogs);
       res.render("dashboard", { user: req.user.name, dogs: dogs, moment: moment});
     })
 });
@@ -332,7 +334,17 @@ app.post("/users/dog_events/:id/create/food/wet/now", checkNotAuthenticated, asy
   })
 })
 
+app.post("/users/dog_events/:id/create/food/wet/datepicker", checkNotAuthenticated, async function (req, res) {
+  console.log("request to create specific food event received");
+  console.log(req.body)
+  await food.create(({ dog_id: req.params.id, type_of_food: "wet", time: req.body.date }))
+  .then(function(){
+    res.redirect("/users/dashboard");
+  })
+})
+
 app.post("/users/dog_events/:id/create/food/dry/now", checkNotAuthenticated, async function (req, res) {
+  
   await food.create(({ dog_id: req.params.id, type_of_food: "dry", time: sequelize.fn('NOW') }))
   .then(function(){
     res.redirect("/users/dashboard");

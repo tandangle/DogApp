@@ -23,7 +23,8 @@ html, head, body {
 
 #events2container, #events_potty_container, 
 #events_food_wet_container, #events_food_dry_container, 
-#events_potty_container_pee, #events_potty_container_poo  {
+#events_potty_container_pee, #events_potty_container_poo,
+#events_food_wet_date_container  {
     height: auto;
     left: 2000px;
     position: absolute;
