@@ -29,6 +29,7 @@
     "express": "^4.17.1",
     "express-flash": "0.0.2",
     "express-session": "^1.17.1",
+    "flatpickr": "^4.6.3",
     "jquery": "^3.5.0",
     "moment": "^2.25.3",
     "passport": "^0.4.1",

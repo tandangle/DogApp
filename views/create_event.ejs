@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="create_event.css">
     <link href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="/images/favicon.png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 <body>
 <div id="back_button">
@@ -61,12 +63,20 @@
             </div>
         </div>
     </form>
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 18rem;" id="wetfoodate">
             <div class="card-body">
               <p class="card-text">My dog ate at specific time</p>
             </div>
         </div>
     </div>
+</div>
+
+<div id="events_food_wet_date_container">
+    <img class="backarrow" id="food_wet_date_arrow" src="/images/back_button.png" width="40px" height="40px">
+    <form id="wet_food_datepicker" action="/users/dog_events/<%= id %>/create/food/wet/datepicker" method="POST">
+        <input class="flatpickr" type="text" name="date" placeholder="Select a date..." id="date"></input>
+        <button type="submit" value="Submit!">Submit</button>
+        </form>
 </div>
 
 <div id="events_food_dry_container">
