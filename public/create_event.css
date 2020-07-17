@@ -1,121 +1,140 @@
-html, head, body {
-    font-family: 'Roboto', sans-serif;
-  }
+html,
+head,
+body {
+	font-family: 'Roboto', sans-serif;
+}
 
 * {
-    background-color: white;
+	background-color: white;
 }
 
 #displayarea {
-    position: relative;
-    width: 100%;
+	position: relative;
+	width: 100%;
 }
 
 #events {
-    width: 100%;
-    margin: 50px 0 0 0;
-    display: flex;
-    justify-content: space-evenly;
-    animation: slideIn 1s forwards;
-    position: absolute;
-    z-index: 0;
+	width: 100%;
+	margin: 50px 0 0 0;
+	display: flex;
+	justify-content: space-evenly;
+	animation: slideIn 1s forwards;
+	position: absolute;
+	z-index: 0;
 }
 
-#events2container, #events_potty_container, 
-#events_food_wet_container, #events_food_dry_container, 
-#events_potty_container_pee, #events_potty_container_poo  {
-    height: auto;
-    left: 2000px;
-    position: absolute;
-    width: 100%;
+#events2container,
+#events_potty_container,
+#events_food_wet_container,
+#events_food_dry_container,
+#events_potty_container_pee,
+#events_potty_container_poo {
+	height: auto;
+	left: 2000px;
+	position: absolute;
+	width: 100%;
 }
 
-#events_food_wet_date_container, #events_food_dry_date_container,
-#events_potty_pee_date_container, #events_potty_poo_date_container {
-    height: 335px;
-    left: 2000px;
-    position: absolute;
-    width: 100%;
- }
+#events_food_wet_date_container,
+#events_food_dry_date_container,
+#events_potty_pee_date_container,
+#events_potty_poo_date_container {
+	height: 335px;
+	left: 2000px;
+	position: absolute;
+	width: 100%;
+}
 
- #events_food_wet_date, #events_food_dry_date,
- #events_potty_pee_date, #events_potty_poo_date  {
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    position: absolute;
-    margin: 200px 0 0 0;
- }
+#events_food_wet_date,
+#events_food_dry_date,
+#events_potty_pee_date,
+#events_potty_poo_date {
+	width: 100%;
+	display: flex;
+	justify-content: space-evenly;
+	position: absolute;
+	margin: 200px 0 0 0;
+}
 
 input {
-    width: 200px;
-    height: 100px;
-    text-align: center;
+	width: 200px;
+	height: 100px;
+	text-align: center;
 }
 
 input[placeholder] {
-    font-size: 1.25em;
+	font-size: 1.25em;
 }
 
 button {
-     width: 150px;
-     height: 100px;
+	width: 150px;
+	height: 100px;
 }
 
-#events2, #events_potty, #events_food_dry, #events_pee, #events_poo {
-    width: 100%;
-    margin: 0 0 0 0;
-    display: flex;
-    justify-content: space-evenly;
-    position: absolute;
+#events2,
+#events_potty,
+#events_food_dry,
+#events_pee,
+#events_poo {
+	width: 100%;
+	margin: 0 0 0 0;
+	display: flex;
+	justify-content: space-evenly;
+	position: absolute;
 }
 
-#foodArrow, #events_potty_arrow, #events_potty_pee_arrow, 
-#events_potty_poo_arrow, #food_wet_date_arrow, #food_dry_date_arrow,
-#potty_pee_date_arrow, #potty_poo_date_arrow {
-    align-self: flex-start;
-    margin: 20px 0 0 150px;
+#foodArrow,
+#events_potty_arrow,
+#events_potty_pee_arrow,
+#events_potty_poo_arrow,
+#food_wet_date_arrow,
+#food_dry_date_arrow,
+#potty_pee_date_arrow,
+#potty_poo_date_arrow {
+	align-self: flex-start;
+	margin: 20px 0 0 150px;
+}
 
-}  
-
-#food_wet_arrow, #food_dry_arrow {
-    align-self: flex-start;
-    margin: 20px 0 200px 150px;
+#food_wet_arrow,
+#food_dry_arrow {
+	align-self: flex-start;
+	margin: 20px 0 200px 150px;
 }
 
 .backarrow:hover {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .card:hover {
-    cursor: pointer;
-    border-color:#fbd157;
-    border-width: 4px;
-    padding: 1px;
+	cursor: pointer;
+	border-color: #fbd157;
+	border-width: 4px;
+	padding: 1px;
 }
 
 @keyframes slideIn {
-    0% {
-      transform: translateX(2000px);
-    }
-    100% {
-      transform: translateX(0);
-    }
+	0% {
+		transform: translateX(2000px);
+	}
+	100% {
+		transform: translateX(0);
+	}
 }
 
-.card, #header {
-    text-align: center;
+.card,
+#header {
+	text-align: center;
 }
 
-.card { 
-    padding: 5px;
-    box-shadow: 5px 5px 3px grey;
+.card {
+	padding: 5px;
+	box-shadow: 5px 5px 3px grey;
 }
 
 #back_button {
-    margin: 10px 0 0 10px;
+	margin: 10px 0 0 10px;
 }
 
 img {
-    opacity: 1;
+	opacity: 1;
 }
