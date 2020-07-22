@@ -10,6 +10,8 @@ const flash = require('express-flash');
 const moment = require('moment');
 const db = require('./models/index.js');
 // const async = require("async");
+// require("dotenv").config();
+
 
 const sequelize = new Sequelize('DogApp', 'postgres', 'postgres', {
 	host: 'localhost',
@@ -110,8 +112,6 @@ app.get('/users/dashboard', checkNotAuthenticated, function(req, res) {
 			where: { user_id: req.user.id }
 		})
 		.then(function(dogs) {
-			console.log(dogs);
-			console.log(dogs[0]);
 			res.render('dashboard', { user: req.user.name, dogs: dogs, moment: moment });
 		});
 });

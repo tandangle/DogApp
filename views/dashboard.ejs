@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="dashboard.css">
     <link href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="/images/favicon.png" />
+    <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
 </head>
 <body>
 <div id="header">
@@ -37,9 +38,14 @@
 
         <% if (typeof dogs != 'undefined') { %> <% dogs.forEach(function(dog, i) { %>
             <div class="card" id="dog" style="width: 18rem;">
+            <div class="buttons">
+              <button type="button" class="btn-primary upload" id="<%= dog.id%>">
+                Upload image
+              </button>
                 <button type="button" class="btn-primary remove" data-toggle="modal" data-target="#modal<%= dog.id %>">
                     Remove
                   </button>
+                </div>
                 <a href="/users/dog_events/<%= dog.id %>/create"><img src="/images/dog_icon.png" class="card-img-top" alt="..."></a>
                 <div class="card-body">
                   <p class="card-text"><%= dog.name %></p>
@@ -88,5 +94,6 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="dashboard.js"></script>
 </body>
 </html>
