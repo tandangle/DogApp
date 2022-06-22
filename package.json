@@ -21,7 +21,7 @@
     "nodemon": "^2.0.3"
   },
   "dependencies": {
-    "async": "^3.2.0",
+    "async": "^3.2.2",
     "bcrypt": "^4.0.1",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
